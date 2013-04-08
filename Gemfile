@@ -22,7 +22,7 @@ end
 
 gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
-gem 'haml-rails', '>= 0.3.4', :group => :development
+gem 'haml-rails', '>= 0.3.4'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

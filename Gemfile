@@ -23,6 +23,11 @@ end
 gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
 gem 'haml-rails', '>= 0.3.4'
+gem 'bcrypt-ruby', :require => 'bcrypt'
+
+group :test do
+  gem 'capybara'
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

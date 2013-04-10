@@ -1,6 +1,9 @@
 SimpleTaskManager::Application.routes.draw do
 
   root :to => 'home#index'
+  get 'login' => 'sessions#new'
+  post 'session/create' => 'sessions#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

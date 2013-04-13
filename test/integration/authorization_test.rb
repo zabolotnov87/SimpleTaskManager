@@ -8,7 +8,7 @@ class AuthorizationTest < ActionDispatch::IntegrationTest
     visit root_path
     current_path == login_path
 
-    user = users(:bob)
+    user = users(:Bob)
 
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'secret' 

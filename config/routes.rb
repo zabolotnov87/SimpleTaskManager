@@ -1,6 +1,13 @@
 SimpleTaskManager::Application.routes.draw do
 
-  root :to => 'home#index'
+  resources :tasks do
+    member do
+      put 'state'
+    end
+  end
+
+  root :to => 'tasks#index'
+
   get 'login' => 'sessions#new'
   post 'session/create' => 'sessions#create'
 

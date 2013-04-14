@@ -6,6 +6,20 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    .navbar
+      .navbar-inner
+        - if current_user
+          %strong.brand
+            logged as:&nbsp;
+            %b>= current_user.email
+          %ul.nav
+            %li
+              = link_to 'Home', root_path
+            %li
+              = link_to 'Logout', logout_path
+        -else
+          %strong.brand
+            Simple Task Manager
     .container-fluid
       - if notice
         .alert.alert-info
@@ -13,4 +27,5 @@
       - if alert
         .alert.alert-error
           %p= alert
-    = yield
+    .container
+      = yield

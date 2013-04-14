@@ -12,6 +12,7 @@ class Task < ActiveRecord::Base
   # scopes
   scope :by_owner, lambda { |user_id| where(user_id: user_id) unless (user_id.nil? || user_id.blank?)}
   scope :by_state, lambda { |state| where(state: state) unless (state.nil? || state.blank?)}
+  scope :recent_order, order('created_at desc')
 
   state_machine :state, initial: :new do
     before_transition any => :accepted do |task, _|

@@ -23,4 +23,12 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
     assert_nil session[:user_id]
   end
+
+  ## destroy
+  test "user logout" do
+    session[:user_id] = @user.id
+    get :destroy
+    assert_redirected_to root_url
+    assert_nil session[:user_id]
+  end
 end

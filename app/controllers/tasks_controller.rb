@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   # GET /tasks
   def index
-    @tasks = Task.by_owner(params[:owner_id]).by_state(params[:state])
+    @tasks = Task.by_owner(params[:owner_id]).by_state(params[:state]).recent_order
   end
 
   # GET /tasks/1

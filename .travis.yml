@@ -1,2 +1,12 @@
+language: ruby
+rvm:
+  - 1.9.2
+  - 1.9.3
+env:
+  - DB=postgresql
+script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
 before_script:
   - psql -c 'create database simple_task_manager_test;' -U postgres
+bundler_args: --binstubs=./bundler_stubs

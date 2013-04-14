@@ -11,6 +11,7 @@ gem 'twitter-bootstrap-rails'
 gem 'haml-rails', '>= 0.3.4'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'state_machine'
+gem 'coveralls', require: false
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,7 +29,6 @@ group :test do
   gem 'capybara'
   gem 'tconsole'
   gem 'simplecov', require: false
-  gem 'coveralls', require: false
 end
 
 # To use Jbuilder templates for JSON

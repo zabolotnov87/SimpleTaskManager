@@ -28,6 +28,7 @@ group :test do
   gem 'capybara'
   gem 'tconsole'
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
 
 # To use Jbuilder templates for JSON

@@ -1,6 +1,12 @@
 - model_class = Task
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize
+= form_tag tasks_path, method: :get do
+  = select_tag :owner_id, options_from_collection_for_select(User.all, :id, :email, params[:owner_id]), prompt: 'all'
+  = select_tag :state, options_for_select(Task.state_machine.states.map{|s| s.human_name}, params[:state]), prompt: 'all'
+  %br
+  = submit_tag 'Filter', class: 'btn'
+
 %table.table.table-striped
   %thead
     %tr

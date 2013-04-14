@@ -2,12 +2,16 @@ class Task < ActiveRecord::Base
   attr_accessible :name, :user_id
 
   belongs_to :user
-  has_many :comment, dependent: :delete_all
+  has_many :comments, dependent: :delete_all
 
   before_save :correct_state
 
-  #validation
+  # validation
   validates :name, presence: true
+
+  # scopes
+  scope :by_owner, lambda { |user_id| where(user_id: user_id) unless (user_id.nil? || user_id.blank?)}
+  scope :by_state, lambda { |state| where(state: state) unless (state.nil? || state.blank?)}
 
   state_machine :state, initial: :new do
     before_transition any => :accepted do |task, _|
@@ -15,7 +19,7 @@ class Task < ActiveRecord::Base
     end
 
     event :start do
-      transition [:new, :rejected] => :started, if: lambda {|task| task.has_owner?}
+      transition [:new, :rejected] => :started, if: lambda { |task| task.has_owner? }
     end
 
     event :finish do
@@ -33,18 +37,6 @@ class Task < ActiveRecord::Base
 
   def has_owner?
     user_id?
-  end
-
-  def comments
-    Comment.where(task_id: id)
-  end
-
-  def owner_name
-    if has_owner?
-      user.email
-    else
-      '<none>'
-    end
   end
 
   private

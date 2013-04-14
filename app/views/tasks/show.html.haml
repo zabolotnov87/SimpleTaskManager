@@ -19,7 +19,7 @@
 %p
   %strong= 'Owner:'
   %br
-  = @task.owner_name
+  = @task.user ? @task.user.email : '<none>'
 
 - @task.state_events.each do |e|
   = link_to e.capitalize, state_task_path(@task, event: e), :class => "btn btn-primary", :method => :put

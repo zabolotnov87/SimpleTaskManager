@@ -16,3 +16,6 @@
 
 # RubyMine
 /.idea
+
+# Simplecov
+/coverage

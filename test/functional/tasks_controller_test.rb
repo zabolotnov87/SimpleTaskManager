@@ -32,6 +32,20 @@ class TasksControllerTest < ActionController::TestCase
     assert_not_nil assigns(:task)
   end
 
+  ## new
+  test 'guest can`t get new' do
+    get :new
+    assert_redirected_to login_url
+  end
+
+  test 'logged user can get new' do
+    session[:user_id] = @user.id
+    get :new
+    assert_response :success
+    assert_not_nil assigns(:task)
+  end
+
+
   ## edit
   test 'guest can`t get edit' do
     get :edit, id: @task

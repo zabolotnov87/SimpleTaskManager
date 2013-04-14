@@ -9,7 +9,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'haml-rails', '>= 0.3.4'
-gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'state_machine'
 
 # Gems used only for assets and not required
@@ -26,6 +26,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'tconsole'
+  gem 'simplecov', require: false
 end
 
 # To use Jbuilder templates for JSON

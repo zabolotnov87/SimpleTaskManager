@@ -35,6 +35,18 @@ class Task < ActiveRecord::Base
     user_id?
   end
 
+  def comments
+    Comment.where(task_id: id)
+  end
+
+  def owner_name
+    if has_owner?
+      user.email
+    else
+      '<none>'
+    end
+  end
+
   private
 
   def correct_state

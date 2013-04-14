@@ -6,8 +6,8 @@ class CreateComments < ActiveRecord::Migration
       t.integer :task_id
 
       t.timestamps
-      add_index :comments, :user_id
-      add_index :comments, :task_id
     end
+    add_index :comments, :user_id
+    add_index :comments, :task_id
   end
 end

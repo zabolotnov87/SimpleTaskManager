@@ -10,5 +10,4 @@ test:
   adapter: postgresql
   encoding: unicode
   database: simple_task_manager_test
-  pool: 5
-  username: sergey
+  username: postgres

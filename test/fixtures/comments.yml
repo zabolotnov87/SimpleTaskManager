@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  body: MyText
-  user_id: 1
-  task_id: 1
-
-two:
-  body: MyText
+  body: simple comment
   user_id: 1
   task_id: 1

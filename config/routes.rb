@@ -1,5 +1,5 @@
 SimpleTaskManager::Application.routes.draw do
-
+  resources :comments
   resources :tasks do
     member do
       put 'state'

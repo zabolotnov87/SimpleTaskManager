@@ -19,3 +19,6 @@
 
 # Simplecov
 /coverage
+
+# Vagrant
+/.vagrant

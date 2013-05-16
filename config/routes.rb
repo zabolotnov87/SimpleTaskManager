@@ -1,6 +1,6 @@
 SimpleTaskManager::Application.routes.draw do
   resources :comments
-  resources :sessions
+  resource  :session, only: [:new, :create, :destroy]
   resources :tasks do
     member do
       put 'state'
@@ -9,8 +9,6 @@ SimpleTaskManager::Application.routes.draw do
 
   root :to => 'tasks#index'
 
-  get 'login' => 'sessions#new'
-  get 'logout' => 'sessions#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -16,7 +16,7 @@
             %li
               = link_to 'Home', root_path
             %li
-              = link_to 'Logout', logout_path
+              = link_to 'Logout', session_path, method: :delete
         -else
           %strong.brand
             Simple Task Manager

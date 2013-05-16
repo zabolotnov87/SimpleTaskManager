@@ -6,7 +6,7 @@ class AuthorizationTest < ActionDispatch::IntegrationTest
 
   test "login and browse site" do
     visit root_path
-    current_path == login_path
+    current_path == new_session_path
 
     user = users(:Bob)
 

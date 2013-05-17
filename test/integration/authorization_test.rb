@@ -12,7 +12,7 @@ class AuthorizationTest < ActionDispatch::IntegrationTest
 
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'secret' 
-    click_on 'Log in'
+    click_on 'Log In'
     current_path == root_path
   end
 end

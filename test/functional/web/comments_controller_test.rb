@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommentsControllerTest < ActionController::TestCase
+class Web::CommentsControllerTest < ActionController::TestCase
   def setup
     @task = tasks(:one)
     @user = users(:Bob)

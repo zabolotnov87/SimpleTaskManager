@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Web::SessionsController < Web::ApplicationController
   skip_before_filter :require_login, :only => [:new, :create]
 
   def new

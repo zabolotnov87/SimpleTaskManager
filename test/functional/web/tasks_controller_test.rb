@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TasksControllerTest < ActionController::TestCase
+class Web::TasksControllerTest < ActionController::TestCase
   setup do
     @task = tasks(:one)
     @user = users(:Bob)

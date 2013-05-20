@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Web::CommentsController < Web::ApplicationController
   # POST /comment
   def create
     @comment = Comment.new(params[:comment])

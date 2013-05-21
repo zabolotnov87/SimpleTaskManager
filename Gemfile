@@ -30,6 +30,7 @@ end
 group :test do
   gem 'capybara'
   gem 'tconsole'
+  gem "factory_girl_rails", '~> 4.0'
 end
 
 # To use Jbuilder templates for JSON

@@ -2,9 +2,9 @@ require 'test_helper'
 
 class Web::CommentsControllerTest < ActionController::TestCase
   def setup
-    @task = tasks(:one)
-    @user = users(:Bob)
-    @comment = comments(:one)
+    @task = create :task
+    @user = create :user
+    @comment = create :comment
   end
 
   ## create

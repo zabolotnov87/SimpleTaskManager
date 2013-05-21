@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Web::SessionsControllerTest < ActionController::TestCase
   setup do
-    @user = users(:Bob)
+    @user = create :user
   end
 
   ## new
@@ -13,9 +13,10 @@ class Web::SessionsControllerTest < ActionController::TestCase
 
   ## create
   test 'user login successfully' do
-    post :create, signin: {email: @user.email, password: 'secret'}
+    post :create, signin: {email: @user.email, password: @user.password}
     assert_redirected_to root_url
-    assert_equal @user.id, session[:user_id]
+    
+    assert signed_in?
   end
 
   test 'user login failed' do

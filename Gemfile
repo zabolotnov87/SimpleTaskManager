@@ -12,6 +12,8 @@ gem 'haml-rails', '>= 0.3.4'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'state_machine'
 gem 'coveralls', require: false
+gem 'unicorn'
+gem 'simple_form'
 
 # Gems used only for assets and not required
 # in production environments by default.

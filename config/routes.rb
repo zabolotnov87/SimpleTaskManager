@@ -1,16 +1,17 @@
 SimpleTaskManager::Application.routes.draw do
-  resources :comments
-  resources :sessions
-  resources :tasks do
-    member do
-      put 'state'
+
+  scope module: :web do
+    resources :comments, only: [:create, :destroy]
+    resource  :session, only: [:new, :create, :destroy]
+    resources :tasks do
+      member do
+          put 'state'
+      end
     end
+
+    root to: 'tasks#index'
   end
 
-  root :to => 'tasks#index'
-
-  get 'login' => 'sessions#new'
-  get 'logout' => 'sessions#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

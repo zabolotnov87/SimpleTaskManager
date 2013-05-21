@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommentsControllerTest < ActionController::TestCase
+class Web::CommentsControllerTest < ActionController::TestCase
   def setup
     @task = tasks(:one)
     @user = users(:Bob)
@@ -10,7 +10,7 @@ class CommentsControllerTest < ActionController::TestCase
   ## create
   test 'guest can`t comment the task' do
     post :create, comment: @comment.attributes
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can comment task' do
@@ -26,7 +26,7 @@ class CommentsControllerTest < ActionController::TestCase
   ## destroy
   test 'guest can`t delete the comment' do
     delete :destroy, id: @comment
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test "logged user can delete the comment" do

@@ -2,8 +2,8 @@
 %html
   %head
     %title SimpleTaskManager
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    "web/application", :media => "all"
+    = javascript_include_tag "web/application"
     = csrf_meta_tags
   %body
     .navbar
@@ -16,7 +16,7 @@
             %li
               = link_to 'Home', root_path
             %li
-              = link_to 'Logout', logout_path
+              = link_to 'Logout', session_path, method: :delete
         -else
           %strong.brand
             Simple Task Manager

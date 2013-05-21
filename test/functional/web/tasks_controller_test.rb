@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TasksControllerTest < ActionController::TestCase
+class Web::TasksControllerTest < ActionController::TestCase
   setup do
     @task = tasks(:one)
     @user = users(:Bob)
@@ -9,7 +9,7 @@ class TasksControllerTest < ActionController::TestCase
   ## index
   test 'guest can`t get index' do
     get :index
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can get index' do
@@ -22,7 +22,7 @@ class TasksControllerTest < ActionController::TestCase
   ## show
   test 'guest can`t see the task' do
     get :show, id: @task
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can see the task' do
@@ -35,7 +35,7 @@ class TasksControllerTest < ActionController::TestCase
   ## new
   test 'guest can`t get new' do
     get :new
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can get new' do
@@ -49,7 +49,7 @@ class TasksControllerTest < ActionController::TestCase
   ## edit
   test 'guest can`t get edit' do
     get :edit, id: @task
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can get edit' do
@@ -62,7 +62,7 @@ class TasksControllerTest < ActionController::TestCase
   ## create
   test 'guest can`t create a task' do
     post :create, task: { name: 'new simple task' }
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can create a task' do
@@ -77,7 +77,7 @@ class TasksControllerTest < ActionController::TestCase
   ## update
   test 'guest can`t update the task' do
     put :update, id: @task, task: {name: 'new name'}
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test "logged user can update the task" do
@@ -89,7 +89,7 @@ class TasksControllerTest < ActionController::TestCase
   ## destroy
   test 'guest can`t delete the task' do
     delete :destroy, id: @task
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test "logged user can delete the task" do
@@ -104,7 +104,7 @@ class TasksControllerTest < ActionController::TestCase
   ## state
   test 'guest can`t change state of a task' do
     put :state, id: @task, event: @task.state_events.first
-    assert_redirected_to login_url
+    assert_redirected_to new_session_url
   end
 
   test 'logged user can change state of a task' do

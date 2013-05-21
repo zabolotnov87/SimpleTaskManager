@@ -6,13 +6,13 @@ class AuthorizationTest < ActionDispatch::IntegrationTest
 
   test "login and browse site" do
     visit root_path
-    current_path == login_path
+    current_path == new_session_path
 
     user = users(:Bob)
 
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'secret' 
-    click_on 'Log in'
+    click_on 'Log In'
     current_path == root_path
   end
 end

@@ -4,13 +4,11 @@ development:
   encoding: unicode
   database: simple_task_manager_dev
   pool: 5
-  host: localhost
-  username: sergey
+  username: postgres
 
 test:
   adapter: postgresql
   encoding: unicode
   database: simple_task_manager_test
   pool: 5
-  host: localhost
-  username: sergey
+  username: postgres

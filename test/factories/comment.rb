@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :comment do
     user
     task
-    body 'hello world'
+    body
   end
 end

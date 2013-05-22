@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :task do
     user
-    name 'task_test'
+    name
     state 'new'
   end
 end

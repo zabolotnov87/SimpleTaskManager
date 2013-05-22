@@ -4,112 +4,57 @@ class Web::TasksControllerTest < ActionController::TestCase
   setup do
     @task = create :task
     @user = create :user
+    sign_in @user
   end
 
-  ## index
-  test 'guest can`t get index' do
-    get :index
-    assert_redirected_to new_session_url
-  end
-
-  test 'logged user can get index' do
-    session[:user_id] = @user.id
+  test 'should get index' do
     get :index
     assert_response :success
-    assert_not_nil assigns(:tasks)
   end
 
-  ## show
-  test 'guest can`t see the task' do
-    get :show, id: @task
-    assert_redirected_to new_session_url
-  end
-
-  test 'logged user can see the task' do
-    session[:user_id] = @user.id
+  test 'should get the task' do
     get :show, id: @task
     assert_response :success
-    assert_not_nil assigns(:task)
   end
 
-  ## new
-  test 'guest can`t get new' do
-    get :new
-    assert_redirected_to new_session_url
-  end
-
-  test 'logged user can get new' do
-    session[:user_id] = @user.id
+  test 'should get new' do
     get :new
     assert_response :success
-    assert_not_nil assigns(:task)
   end
 
-
-  ## edit
-  test 'guest can`t get edit' do
-    get :edit, id: @task
-    assert_redirected_to new_session_url
-  end
-
-  test 'logged user can get edit' do
-    session[:user_id] = @user.id
+  test 'should get edit' do
     get :edit, id: @task
     assert_response :success
     assert_not_nil assigns(:task)
   end
 
-  ## create
-  test 'guest can`t create a task' do
-    post :create, task: { name: 'new simple task' }
-    assert_redirected_to new_session_url
+  test 'should create a task' do
+    attrs = attributes_for :task, user_id: @user.id
+    post :create, task: attrs
+    assert_response :redirect
+    task = Task.find_by_name attrs[:name]
+    assert task
   end
 
-  test 'logged user can create a task' do
-    session[:user_id] = @user.id
-    assert_difference('Task.count') do
-      post :create, task: { name: 'new simple task' }
-    end
-
-    assert_redirected_to task_path(assigns(:task))
+  test "should update the task" do
+    attrs = attributes_for :task
+    put :update, id: @task.id, task: attrs
+    assert_response :redirect
+    task = Task.find_by_name attrs[:name]
+    assert task
+    assert_equal @task.id, task.id
   end
 
-  ## update
-  test 'guest can`t update the task' do
-    put :update, id: @task, task: {name: 'new name'}
-    assert_redirected_to new_session_url
+  test "should delete the task" do
+    delete :destroy, id: @task.id
+    assert_response :redirect
+    assert !Task.exists?(@task)
   end
 
-  test "logged user can update the task" do
-    session[:user_id] = @user.id
-    put :update, id: @task, task: {name: 'new name'}
-    assert_redirected_to task_path(assigns(:task))
-  end
-
-  ## destroy
-  test 'guest can`t delete the task' do
-    delete :destroy, id: @task
-    assert_redirected_to new_session_url
-  end
-
-  test "logged user can delete the task" do
-    session[:user_id] = @user.id
-    assert_difference('Task.count', -1) do
-      delete :destroy, id: @task
-    end
-
-    assert_redirected_to tasks_path
-  end
-
-  ## state
-  test 'guest can`t change state of a task' do
+  test 'should change state of a task' do
     put :state, id: @task, event: @task.state_events.first
-    assert_redirected_to new_session_url
-  end
-
-  test 'logged user can change state of a task' do
-    session[:user_id] = @user.id
-    put :state, id: @task, event: @task.state_events.first
-    assert_redirected_to task_path(assigns(:task))
+    assert_response :redirect
+    task = Task.find @task
+    assert_not_equal @task.state, task.state
   end
 end

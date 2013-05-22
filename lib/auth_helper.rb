@@ -7,4 +7,18 @@ module AuthHelper
   def signed_in?
     current_user
   end
+
+  def sign_in(user)
+    session[:user_id] = user.id    
+  end
+
+  def sign_out
+    session[:user_id] = nil
+  end
+
+  def require_login
+    unless signed_in?
+      redirect_to new_session_url
+    end
+  end
 end

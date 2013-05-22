@@ -5,31 +5,22 @@ class Web::SessionsControllerTest < ActionController::TestCase
     @user = create :user
   end
 
-  ## new
-  test 'everybody can get new' do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  ## create
-  test 'user login successfully' do
-    post :create, signin: {email: @user.email, password: @user.password}
-    assert_redirected_to root_url
-    
+  test 'should login' do
+    attrs = {email: @user.email, password: @user.password}
+    post :create, signin: attrs
+    assert_response :redirect
     assert signed_in?
   end
 
-  test 'user login failed' do
-    post :create, signin: {email: @user.email, password: 'invalid_password'}
-    assert_response :success
-    assert_nil session[:user_id]
-  end
-
-  ## destroy
-  test "user logout" do
-    session[:user_id] = @user.id
+  test "should logout" do
+    sign_in @user
     get :destroy
-    assert_redirected_to root_url
-    assert_nil session[:user_id]
+    assert_response :redirect
+    assert !signed_in?
   end
 end

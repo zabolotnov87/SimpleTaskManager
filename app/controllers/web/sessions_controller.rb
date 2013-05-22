@@ -1,5 +1,6 @@
 class Web::SessionsController < Web::ApplicationController
-  skip_before_filter :require_login, :only => [:new, :create]
+  
+  skip_before_filter :require_login, only: [:new, :create]
 
   def new
   end
@@ -7,7 +8,7 @@ class Web::SessionsController < Web::ApplicationController
   def create
     user = User.find_by_email(params[:signin][:email])
     if user && user.authenticate(params[:signin][:password])
-      session[:user_id] = user.id
+      sign_in user
       redirect_to root_url, notice: "You are successfully logged as #{user.email}"
     else
       flash.now[:alert] = "Invalid email or password"
@@ -16,7 +17,7 @@ class Web::SessionsController < Web::ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    sign_out
     redirect_to root_url
   end
 end

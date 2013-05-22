@@ -4,38 +4,23 @@ class Web::CommentsControllerTest < ActionController::TestCase
   def setup
     @task = create :task
     @user = create :user
+    sign_in @user
     @comment = create :comment
   end
 
-  ## create
-  test 'guest can`t comment the task' do
-    post :create, comment: @comment.attributes
-    assert_redirected_to new_session_url
+  test 'should comment the task' do
+    attrs = attributes_for :comment, task_id: @task.id, user_id: @user.id
+    set_http_referer task_path(@task)
+    post :create, comment: attrs
+    assert_response :redirect
+    comment = Comment.find_by_body(attrs[:body])
+    assert comment
   end
 
-  test 'logged user can comment task' do
-    session[:user_id] = @user.id
-    request.env["HTTP_REFERER"] = task_url @task
-    assert_difference('Comment.count') do
-      post :create, comment: { body: 'new simple comment', user_id: @user.id, task_id: @task.id }
-    end
-
-    assert_redirected_to @task
-  end
-
-  ## destroy
-  test 'guest can`t delete the comment' do
+  test "should delete the comment" do
+    set_http_referer task_path(@task)
     delete :destroy, id: @comment
-    assert_redirected_to new_session_url
-  end
-
-  test "logged user can delete the comment" do
-    session[:user_id] = @user.id
-    request.env["HTTP_REFERER"] = task_url @task
-    assert_difference('Comment.count', -1) do
-      delete :destroy, id: @comment
-    end
-
-    assert_redirected_to @task
+    assert_response :redirect
+    assert !Comment.exists?(@comments)
   end
 end

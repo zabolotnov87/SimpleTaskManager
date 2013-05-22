@@ -12,9 +12,12 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 
+Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+
 class ActiveSupport::TestCase
   include AuthHelper
-
+  include TestSupport
+  
   require 'factory_girl_rails'
   include FactoryGirl::Syntax::Methods
 end

@@ -14,6 +14,7 @@ gem 'state_machine'
 gem 'coveralls', require: false
 gem 'unicorn'
 gem 'simple_form'
+gem 'airbrake'
 
 # Gems used only for assets and not required
 # in production environments by default.

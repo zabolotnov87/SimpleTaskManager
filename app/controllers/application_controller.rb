@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   
   include AuthHelper
 
-  helper_method :current_user
+  helper_method :signed_in?, :current_user
   
   before_filter :require_login
 end

@@ -9,7 +9,7 @@ class Web::CommentsControllerTest < ActionController::TestCase
   end
 
   test 'should comment the task' do
-    attrs = attributes_for :comment, task_id: @task.id, user_id: @user.id
+    attrs = attributes_for :comment, task_id: @task.id
     set_http_referer task_path(@task)
     post :create, comment: attrs
     assert_response :redirect

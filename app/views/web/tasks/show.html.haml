@@ -36,7 +36,6 @@
             = c.user.email
 
 = simple_form_for @comment do |f|
-  = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
   = f.input :task_id, as: :hidden, input_html: {value: @task.id}
   = f.input :body, as: :text, input_html: {rows: 3}, label: false
   = f.button :submit, value: 'Add' 

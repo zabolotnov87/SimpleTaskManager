@@ -2,6 +2,7 @@ class Web::CommentsController < Web::ApplicationController
   # POST /comment
   def create
     @comment = Comment.new(params[:comment])
+    @comment.user = current_user
     if @comment.save
       redirect_to :back
     else

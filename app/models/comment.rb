@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :user_id, :task_id, :body
+  attr_accessible :task_id, :body
 
   belongs_to :user
   belongs_to :task

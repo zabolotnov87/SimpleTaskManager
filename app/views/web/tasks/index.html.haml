@@ -1,4 +1,3 @@
-- model_class = Task
 %legend Tasks
 = form_tag tasks_path, method: :get do
   = select_tag :owner_id, options_from_collection_for_select(User.all, :id, :email, params[:owner_id]), prompt: 'all'

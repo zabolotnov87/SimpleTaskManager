@@ -52,9 +52,11 @@ class Web::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should change state of a task' do
-    put :state, id: @task, event: @task.state_events.first
+    event = @task.state_events.first
+    put :state, id: @task, event: event
     assert_response :redirect
     task = Task.find @task
-    assert_not_equal @task.state, task.state
+    previous_state = @task.state.to_sym
+    assert !task.state?(previous_state)
   end
 end

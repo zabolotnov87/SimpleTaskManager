@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :name, :user_id, :state
+  attr_accessible :name, :user_id
 
   belongs_to :user
   has_many :comments, dependent: :delete_all

@@ -29,7 +29,7 @@ class Web::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should create a task' do
-    attrs = attributes_for :task, user_id: @user.id
+    attrs = build_attributes(:task, user: @user)
     post :create, task: attrs
     assert_response :redirect
     task = Task.find_by_name attrs[:name]

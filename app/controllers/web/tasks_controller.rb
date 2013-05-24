@@ -7,6 +7,7 @@ class Web::TasksController < Web::ApplicationController
   # GET /tasks/1
   def show
     @task = Task.find(params[:id])
+    @comments = @task.comments.includes :user
     @comment = Comment.new
   end
 

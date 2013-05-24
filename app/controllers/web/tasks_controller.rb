@@ -1,7 +1,7 @@
 class Web::TasksController < Web::ApplicationController
-  
+
   def index
-    @tasks = Task.by_owner(params[:owner_id]).by_state(params[:state]).recent_order
+    @tasks = Task.by_owner(params[:owner_id]).by_state(params[:state]).recent_order.includes :user
   end
 
   def show

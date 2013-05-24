@@ -1,11 +1,13 @@
 SimpleTaskManager::Application.routes.draw do
 
   scope module: :web do
-    resources :comments, only: [:create, :destroy]
     resource  :session, only: [:new, :create, :destroy]
     resources :tasks do
       member do
           put 'state'
+      end
+      scope module: :tasks do
+        resources :comments, only: [:create]
       end
     end
 

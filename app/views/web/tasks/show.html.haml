@@ -33,8 +33,7 @@
             \&nbsp;by&nbsp
             = c.user.email
 
-= simple_form_for @comment do |f|
-  = f.input :task_id, as: :hidden, input_html: {value: @task.id}
+= simple_form_for [@task, @comment] do |f|
   = f.input :body, as: :text, input_html: {rows: 3}, label: false
   = f.button :submit, value: 'Add' 
 

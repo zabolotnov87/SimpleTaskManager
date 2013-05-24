@@ -1,27 +1,23 @@
 class Web::TasksController < Web::ApplicationController
-  # GET /tasks
+  
   def index
     @tasks = Task.by_owner(params[:owner_id]).by_state(params[:state]).recent_order
   end
 
-  # GET /tasks/1
   def show
     @task = Task.find(params[:id])
-    @comments = @task.comments.includes :user
+    @comments = @task.comments.includes(:user)
     @comment = Comment.new
   end
 
-  # GET /tasks/new
   def new
     @task = Task.new
   end
 
-  # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
   end
 
-  # POST /tasks
   def create
     @task = Task.new(params[:task])
     if @task.save
@@ -31,7 +27,6 @@ class Web::TasksController < Web::ApplicationController
     end
   end
 
-  # PUT /tasks/1
   def update
     @task = Task.find(params[:id])
       if @task.update_attributes(params[:task])
@@ -41,7 +36,6 @@ class Web::TasksController < Web::ApplicationController
     end
   end
 
-  # DELETE /tasks/1
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
@@ -49,7 +43,6 @@ class Web::TasksController < Web::ApplicationController
     redirect_to tasks_url
   end
 
-  # PUT /task/1/state
   def state
     event = params[:event]
     @task = Task.find params[:id]

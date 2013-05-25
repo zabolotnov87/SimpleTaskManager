@@ -1,5 +1,5 @@
 %h1 Log In
-= simple_form_for :signin, url: session_path do |f|
-	= f.input :email, input_html: {value: params[:signin] ? params[:signin][:email] : ''}
+= simple_form_for @type, url: session_path do |f|
+	= f.input :email
 	= f.input :password
 	= f.button :submit, 'Log In'

@@ -12,7 +12,7 @@ class Web::SessionsControllerTest < ActionController::TestCase
 
   test 'should login' do
     attrs = {email: @user.email, password: @user.password}
-    post :create, signin: attrs
+    post :create, user_sign_in_type: attrs
     assert_response :redirect
     assert signed_in?
   end

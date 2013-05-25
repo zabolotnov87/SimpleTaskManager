@@ -12,6 +12,8 @@ gem 'unicorn'
 gem 'simple_form'
 gem 'airbrake'
 gem 'newrelic_rpm'
+gem 'virtus'
+gem 'validates'
 
 # Gems used only for assets and not required
 # in production environments by default.

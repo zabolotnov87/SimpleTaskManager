@@ -9,10 +9,11 @@ class Web::SessionsController < Web::ApplicationController
     user = User.find_by_email(params[:signin][:email])
     if user && user.authenticate(params[:signin][:password])
       sign_in user
-      redirect_to root_url, notice: "You are successfully logged as #{user.email}"
+      flash_success
+      redirect_to root_url
     else
-      flash.now[:alert] = "Invalid email or password"
-      render "new"
+      flash_error
+      render :new
     end
   end
 

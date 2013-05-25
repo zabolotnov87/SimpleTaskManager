@@ -21,18 +21,22 @@ class Web::TasksController < Web::ApplicationController
   def create
     @task = Task.new(params[:task])
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      flash_success
+      redirect_to @task
     else
-      render action: 'new'
+      flash_error
+      render :new
     end
   end
 
   def update
     @task = Task.find(params[:id])
       if @task.update_attributes(params[:task])
-        redirect_to @task, notice: 'Task was successfully updated.'
+        flash_success
+        redirect_to @task
       else
-        render action: 'edit'
+        flash_error
+        render :edit
     end
   end
 
@@ -48,9 +52,11 @@ class Web::TasksController < Web::ApplicationController
     @task = Task.find params[:id]
     begin
       @task.fire_state_event event
+      flash_success
       redirect_to @task
     rescue
-      redirect_to @task, alert: 'Invalid state event.'
+      flash_error
+      redirect_to @task
     end
   end
 end

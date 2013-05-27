@@ -2,6 +2,10 @@ en:
   simple_form:
     "yes": 'Yes'
     "no": 'No'
+    labels:
+      defaults:
+        email: Email
+        password: Password
     required:
       text: 'required'
       mark: '*'

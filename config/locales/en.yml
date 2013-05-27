@@ -1,5 +1,19 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  layouts:
+    web:
+      application:
+        home: 'Home'
+        logout: 'Logout'
+  web:
+    sessions:
+      new:
+        login: Log In
+    tasks:
+      index:
+        filter: Filter
+        create: Create Task
+      show:
+        name: Name
+        state: State
+        owner: Owner
+        add: Add

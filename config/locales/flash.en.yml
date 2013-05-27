@@ -1,0 +1,22 @@
+en:
+  flash:
+    controllers:
+      web:
+        sessions:
+          create:
+            success: "You are successfully login" 
+            error: 'Login failed'
+        tasks:
+          create: 
+            success: 'The new task has been succesfully created'
+            error: 'Create task: failed'
+          update:
+            success: 'Updated'
+            error: 'Update: Failed'
+          state:
+            success: 'The state of the task has been changed'
+            error: 'Change state: failed'
+          comments:
+            create:
+              success: 'The comment has been succesfully created'
+              error: 'Create comment: failed'

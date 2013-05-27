@@ -21,11 +21,6 @@
           %strong.brand
             Simple Task Manager
     .container-fluid
-      - if notice
-        .alert.alert-info
-          %p= notice
-      - if alert
-        .alert.alert-error
-          %p= alert
+      = bootstrap_flash
     .container
       = yield

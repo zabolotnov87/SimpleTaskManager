@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        user_sign_in_type:
+          attributes:
+            email:
+              email: 'Incorrect email format'
+              user_or_password_invalid: 'Email and/or password invalid'

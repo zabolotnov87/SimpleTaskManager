@@ -1,19 +1,19 @@
 %legend
   Task:
   = @task.name
-  = link_to 'Edit', edit_task_path(@task), class: 'btn'
-  = link_to 'Delete', task_path(@task), method: 'delete', class: 'btn btn-danger'
+  = link_to t('.edit'), edit_task_path(@task), class: 'btn'
+  = link_to t('.delete'), task_path(@task), method: 'delete', class: 'btn btn-danger'
 
 %p
-  %strong= 'Name:'
+  %strong= t('.name')
   %br
   = @task.name
 %p
-  %strong= 'State:'
+  %strong= t('.state')
   %br
   = state(@task)
 %p
-  %strong= 'Owner:'
+  %strong= t('.owner')
   %br
   = owner_name(@task)
 
@@ -34,5 +34,5 @@
 
 = simple_form_for [@task, @comment] do |f|
   = f.input :body, as: :text, input_html: {rows: 3}, label: false
-  = f.button :submit, value: 'Add' 
+  = f.button :submit, value: t('.add')
 

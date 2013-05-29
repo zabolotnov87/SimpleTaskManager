@@ -28,7 +28,7 @@
         = c.body
         .float-left
           %em
-            = format_date(c.created_at)
+            = l c.created_at
             \&nbsp;by&nbsp
             = c.user.email
 

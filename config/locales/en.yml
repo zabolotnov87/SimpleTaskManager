@@ -1,9 +1,14 @@
 en:
+  time:
+    formats:
+      default: '%d %b %H:%M'
+
   layouts:
     web:
       application:
         home: 'Home'
         logout: 'Logout'
+
   web:
     sessions:
       new:

@@ -14,6 +14,7 @@ gem 'airbrake'
 gem 'newrelic_rpm'
 gem 'virtus'
 gem 'validates'
+gem 'draper', '~> 1.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,7 +30,7 @@ end
 
 group :development do
   gem 'bullet'
-end  
+end
 
 group :test do
   gem 'capybara'

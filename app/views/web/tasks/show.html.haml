@@ -11,11 +11,11 @@
 %p
   %strong= t('.state')
   %br
-  = state(@task)
+  = @task.state_name
 %p
   %strong= t('.owner')
   %br
-  = owner_name(@task)
+  = @task.owner_name
 
 - @task.state_events.each do |e|
   = link_to e.capitalize, state_task_path(@task, event: e), class: "btn btn-success", method: :put

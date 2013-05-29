@@ -1,21 +1,24 @@
 class Web::TasksController < Web::ApplicationController
 
   def index
-    @tasks = Task.by_owner(params[:owner_id]).by_state(params[:state]).recent_order.includes :user
+    @tasks = Task.by_owner(params[:owner_id])
+                 .by_state(params[:state])
+                 .recent_order
+                 .includes(:user).decorate
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id]).decorate
     @comments = @task.comments.includes(:user)
     @comment = Comment.new
   end
 
   def new
-    @task = Task.new
+    @task = Task.new.decorate
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id]).decorate
   end
 
   def create
